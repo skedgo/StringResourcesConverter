@@ -1,5 +1,6 @@
 package com.skedgo.tools.platform.android;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class AndroidOutputStrategy implements OutputStrategy {
 
 		}
 
-		buf.append("\n</resources>\n").append("<!-- This is an auto generated file -->");
+		buf.append("\n</resources>\n").append("<!-- This is an auto generated file (" + new Date(System.currentTimeMillis()) + ") -->");
 
 		return buf.toString();
 	}

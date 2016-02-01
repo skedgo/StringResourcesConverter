@@ -1,11 +1,16 @@
 package com.skedgo.tools.platform.ios;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.io.IOUtils;
 
 import com.skedgo.tools.InputStringsStrategy;
 import com.skedgo.tools.model.StringDefinition;
 import com.skedgo.tools.model.StringsStructure;
+
 
 public class IOSInputStrategy implements InputStringsStrategy {
 
@@ -15,12 +20,12 @@ public class IOSInputStrategy implements InputStringsStrategy {
 	private String patternIOSCommplete = "[" + patternStringIOS + "|" + patternComments + "]+";
 
 	@Override
-	public StringsStructure getInputValues(String input) throws Exception {
+	public StringsStructure getInputValues(InputStream input) throws Exception {
 
 		StringsStructure output = new StringsStructure();
 
 		Pattern patternStringNames = Pattern.compile(patternIOSCommplete);
-		Matcher matcher = patternStringNames.matcher(input);
+		Matcher matcher = patternStringNames.matcher(IOUtils.toString(input, StandardCharsets.UTF_8));
 
 		String match = null;
 
