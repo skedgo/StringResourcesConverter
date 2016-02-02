@@ -4,11 +4,11 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-import com.skedgo.tools.OutputStrategy;
+import com.skedgo.tools.OutputStringsStrategy;
 import com.skedgo.tools.model.StringDefinition;
 import com.skedgo.tools.model.StringsStructure;
 
-public class AndroidOutputStrategy implements OutputStrategy {
+public class AndroidOutputStrategy implements OutputStringsStrategy {
 
 	@Override
 	public String generateOutput(StringsStructure input) {
@@ -64,6 +64,7 @@ public class AndroidOutputStrategy implements OutputStrategy {
 
 		name = basicClean(name);
 
+		// these are mainly iOS strings rules to adapt. 
 		name = name.replace(" ", "_").replace(".", "_DOT").replace("!", "_EXCLAM").replace("%s", "nps")
 				.replace("?", "_QUESTION").replace("\'", "_APOST").replace("/", "_SLASH").replace(",", "_COMA")
 				.replace("(", "_START_PARENT").replace(")", "_END_PARENT").replace("{", "_START_QBRAQUET")
@@ -82,14 +83,16 @@ public class AndroidOutputStrategy implements OutputStrategy {
 	}
 
 	protected String cleanValue(String value) {
+		
+		// add escape char
 		String cleanedValue = createAndroidPatterns(basicClean(value).replace("'", "\\'"));
 
+		// add quotes if needed
 		if (cleanedValue.startsWith(" ") || cleanedValue.endsWith(" ")) {
 			cleanedValue = "\"" + cleanedValue + "\"";
 		}
 
 		return cleanedValue;
-
 	}
 
 	protected String createAndroidPatterns(String string) {

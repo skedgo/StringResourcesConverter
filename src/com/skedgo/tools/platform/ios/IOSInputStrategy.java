@@ -66,7 +66,7 @@ public class IOSInputStrategy implements InputStringsStrategy {
 			output.getDefinitions().put(output.getDefinitions().size(),
 					new StringDefinition(matcher.group(1), matcher.group(2)));
 		} else {
-			// throw new Exception("Wrong string definition:" + string);
+			 throw new Exception("Wrong iOS string definition:" + string);
 		}
 
 	}

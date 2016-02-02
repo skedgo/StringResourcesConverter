@@ -19,8 +19,7 @@ public class AndroidInputStrategy implements InputStringsStrategy {
 
 	@Override
 	public StringsStructure getInputValues(InputStream input) throws Exception {
-		StringsStructure output = new StringsStructure();		
-	
+		StringsStructure output = new StringsStructure();
 
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

@@ -1,5 +1,9 @@
 package com.skedgo.tools.model;
 
+/**
+ * StringDefinition: string definition name = value pairs
+ *
+ */
 public class StringDefinition {
 	
 	private String name;

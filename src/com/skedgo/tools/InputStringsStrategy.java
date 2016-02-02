@@ -4,13 +4,19 @@ import java.io.InputStream;
 
 import com.skedgo.tools.model.StringsStructure;
 
+/**
+ * InputStringsStrategy defines the input string resource processing algorithm
+ * methods.
+ *
+ */
 public interface InputStringsStrategy {
 
 	/**
-	 * Decompose input source 
-	 * @param input
+	 * Transform input source into a generic object StringStructure
+	 * 
+	 * @param input: platform specific input stream
 	 * @return StringsStructure
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	StringsStructure getInputValues(InputStream input) throws Exception; 
+	StringsStructure getInputValues(InputStream input) throws Exception;
 }
