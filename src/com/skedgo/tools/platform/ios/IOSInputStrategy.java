@@ -14,7 +14,7 @@ import com.skedgo.tools.model.StringsStructure;
 
 public class IOSInputStrategy implements InputStringsStrategy {
 
-	private String patternWords = "[^\"\r\n]+";
+	private String patternWords = "[^\r\n]+";
 	private String patternStringIOS = "\"(" + patternWords + ")\" = \"(" + patternWords + ")\";";
 	private String patternComments = "/\\*(.*?)\\*/";
 	private String patternIOSCommplete = "[" + patternStringIOS + "|" + patternComments + "]+";
