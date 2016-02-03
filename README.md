@@ -20,8 +20,8 @@ The general steps are>
 ```
 InputStream input = readFile(inputFileName);
 
-IOSInputStrategy inputStrategy = new IOSInputStrategy();
-AndroidOutputStrategy outputStrategy = new AndroidOutputStrategy();
+IOSInputStrategy inputStrategy = IOSInputStrategy.getInstance();
+AndroidOutputStrategy outputStrategy = AndroidOutputStrategy.getInstance();
 
 StringsStructure structure = inputStrategy.getInputValues(input);
 structure = outputStrategy.preprocessInputNames(structure);
