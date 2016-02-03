@@ -13,9 +13,9 @@ This module follows the Strategy design pattern. The idea is to create Input and
 
 The general steps are>
 
-- InputStringStrategy.getInputValues() to parse the input resource.
-- OutputStringStrategy.preprocessInputNames() to preprocess the strings names. This could be useful to clean the strings list to generate (remove duplicates when having multiple string resources for example).
-- OutputStringStrategy.generateOutput() to generate the specific platform string resource.
+- `InputStringStrategy.getInputValues()` to parse the input resource.
+- `OutputStringStrategy.preprocessInputNames()` to preprocess the strings names. This could be useful to clean the strings list to generate (remove duplicates when having multiple string resources for example).
+- `OutputStringStrategy.generateOutput()` to generate the specific platform string resource.
 
 ```
 InputStream input = readFile(inputFileName);
