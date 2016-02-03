@@ -10,6 +10,19 @@ import com.skedgo.tools.model.StringsStructure;
 
 public class AndroidOutputStrategy implements OutputStringsStrategy {
 
+	private static AndroidOutputStrategy instance;
+
+	private AndroidOutputStrategy() {
+	}
+
+	public static AndroidOutputStrategy getInstance() {
+		if (instance == null) {
+			instance = new AndroidOutputStrategy();
+		}
+
+		return instance;
+	}
+
 	@Override
 	public String generateOutput(StringsStructure input) {
 
@@ -17,27 +30,29 @@ public class AndroidOutputStrategy implements OutputStringsStrategy {
 
 		Map<Integer, StringDefinition> definitions = input.getDefinitions();
 		Map<Integer, String> comments = input.getComments();
-		
+
 		Set<Integer> idList = definitions.keySet();
 
-		for (Integer i: idList) {
+		for (Integer i : idList) {
 
 			StringDefinition definition = definitions.get(i);
 
 			String name = cleanName(definition.getName());
-			String value = definition.getValue();			
-			
-			if(!buf.toString().contains("\t<string name=\"" + name + "\">")){ // avoid duplicates				
-				
+			String value = definition.getValue();
+
+			if (!buf.toString().contains("\t<string name=\"" + name + "\">")) { // avoid
+																				// duplicates
+
 				if (comments.containsKey(i)) {
 					buf.append("\t<!--" + comments.get(i) + "-->\n");
 				}
 				buf.append("\t<string name=\"" + name + "\">" + cleanValue(value) + "</string>\n");
-			}		
+			}
 
 		}
 
-		buf.append("\n</resources>\n").append("<!-- This is an auto generated file (" + new Date(System.currentTimeMillis()) + ") -->");
+		buf.append("\n</resources>\n")
+				.append("<!-- This is an auto generated file (" + new Date(System.currentTimeMillis()) + ") -->");
 
 		return buf.toString();
 	}
@@ -49,9 +64,9 @@ public class AndroidOutputStrategy implements OutputStringsStrategy {
 
 		for (int i = 0; i < definitions.size(); i++) {
 			StringDefinition definition = definitions.get(i);
-			definition.setName(cleanName(definition.getName()));			
+			definition.setName(cleanName(definition.getName()));
 		}
-		
+
 		return input;
 	}
 
@@ -64,7 +79,7 @@ public class AndroidOutputStrategy implements OutputStringsStrategy {
 
 		name = basicClean(name);
 
-		// these are mainly iOS strings rules to adapt. 
+		// these are mainly iOS strings rules to adapt.
 		name = name.replace(" ", "_").replace(".", "_DOT").replace("!", "_EXCLAM").replace("%s", "nps")
 				.replace("?", "_QUESTION").replace("\'", "_APOST").replace("/", "_SLASH").replace(",", "_COMA")
 				.replace("(", "_START_PARENT").replace(")", "_END_PARENT").replace("{", "_START_QBRAQUET")
@@ -83,7 +98,7 @@ public class AndroidOutputStrategy implements OutputStringsStrategy {
 	}
 
 	protected String cleanValue(String value) {
-		
+
 		// add escape char
 		String cleanedValue = createAndroidPatterns(basicClean(value).replace("'", "\\'"));
 

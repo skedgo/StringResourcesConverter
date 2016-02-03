@@ -13,11 +13,23 @@ import com.skedgo.tools.model.StringsStructure;
 
 
 public class IOSInputStrategy implements InputStringsStrategy {
+	
+	private static IOSInputStrategy instance;
 
 	private String patternWords = "[^\r\n]+";
 	private String patternStringIOS = "\"(" + patternWords + ")\" = \"(" + patternWords + ")\";";
 	private String patternComments = "/\\*(.*?)\\*/";
 	private String patternIOSCommplete = "[" + patternStringIOS + "|" + patternComments + "]+";
+	
+	private IOSInputStrategy(){}
+	
+	public static IOSInputStrategy getInstance() {
+		if (instance == null) {
+			instance = new IOSInputStrategy();
+		}
+
+		return instance;
+	}
 
 	@Override
 	public StringsStructure getInputValues(InputStream input) throws Exception {

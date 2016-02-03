@@ -17,6 +17,19 @@ import com.skedgo.tools.model.StringsStructure;
 
 public class AndroidInputStrategy implements InputStringsStrategy {
 
+	private static AndroidInputStrategy instance;
+
+	private AndroidInputStrategy() {
+	}
+
+	public static AndroidInputStrategy getInstance() {
+		if (instance == null) {
+			instance = new AndroidInputStrategy();
+		}
+
+		return instance;
+	}
+
 	@Override
 	public StringsStructure getInputValues(InputStream input) throws Exception {
 		StringsStructure output = new StringsStructure();
@@ -24,7 +37,7 @@ public class AndroidInputStrategy implements InputStringsStrategy {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(input);
-		
+
 		Node root = doc.getDocumentElement();
 
 		NodeList nodeList = root.getChildNodes();
@@ -39,19 +52,19 @@ public class AndroidInputStrategy implements InputStringsStrategy {
 
 				output.getDefinitions().put(output.getDefinitions().size(),
 						new StringDefinition(element.getAttribute("name"), cleanValue(element.getTextContent())));
-				
+
 			} else if (node.getNodeType() == Node.COMMENT_NODE) {
 				Comment element = (Comment) node;
-				output.getComments().put(output.getDefinitions().size(),  element.getTextContent());
+				output.getComments().put(output.getDefinitions().size(), element.getTextContent());
 			}
 		}
 
 		return output;
 	}
-	
+
 	protected String cleanValue(String value) {
 		// remove android escape char
-		return value.replace("\\'", "'");		
+		return value.replace("\\'", "'");
 	}
 
 }
