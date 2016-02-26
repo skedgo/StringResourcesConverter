@@ -24,6 +24,9 @@ public class StringsStructure {
 
 	// Comment position - value
 	private Map<Integer, String> comments;
+	
+	// Target Language: some resources defines the language in its structure
+	private String targetLanguage;
 
 	public StringsStructure() {
 		definitions = new HashMap<Integer, StringDefinition>();
@@ -46,4 +49,12 @@ public class StringsStructure {
 		this.comments = comments;
 	}
 
+	public String getTargetLanguage() {
+		return targetLanguage;
+	}
+
+	public void setTargetLanguage(String targetLanguage) {
+		this.targetLanguage = targetLanguage;
+	}
+	
 }

@@ -11,6 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.skedgo.tools.InputCreatorListener;
 import com.skedgo.tools.InputStringsStrategy;
 import com.skedgo.tools.model.StringDefinition;
 import com.skedgo.tools.model.StringsStructure;
@@ -31,7 +32,7 @@ public class AndroidInputStrategy implements InputStringsStrategy {
 	}
 
 	@Override
-	public StringsStructure getInputValues(InputStream input) throws Exception {
+	public void createInputValues(InputStream input, InputCreatorListener listener) throws Exception {
 		StringsStructure output = new StringsStructure();
 
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -59,7 +60,7 @@ public class AndroidInputStrategy implements InputStringsStrategy {
 			}
 		}
 
-		return output;
+		listener.didFinishInputCreation(output);
 	}
 
 	protected String cleanValue(String value) {

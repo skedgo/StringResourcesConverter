@@ -2,7 +2,7 @@ package com.skedgo.tools;
 
 import java.io.InputStream;
 
-import com.skedgo.tools.model.StringsStructure;
+import com.sun.istack.internal.NotNull;
 
 /**
  * InputStringsStrategy defines the input string resource processing algorithm
@@ -15,8 +15,7 @@ public interface InputStringsStrategy {
 	 * Transform input source into a generic object StringStructure
 	 * 
 	 * @param input: platform specific input stream
-	 * @return StringsStructure
 	 * @throws Exception
 	 */
-	StringsStructure getInputValues(InputStream input) throws Exception;
+	void createInputValues(@NotNull InputStream input, @NotNull InputCreatorListener listener) throws Exception;
 }

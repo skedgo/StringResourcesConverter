@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
 
+import com.skedgo.tools.InputCreatorListener;
 import com.skedgo.tools.InputStringsStrategy;
 import com.skedgo.tools.model.StringDefinition;
 import com.skedgo.tools.model.StringsStructure;
@@ -32,7 +33,7 @@ public class IOSInputStrategy implements InputStringsStrategy {
 	}
 
 	@Override
-	public StringsStructure getInputValues(InputStream input) throws Exception {
+	public void createInputValues(InputStream input, InputCreatorListener listener) throws Exception {
 
 		StringsStructure output = new StringsStructure();
 
@@ -49,7 +50,7 @@ public class IOSInputStrategy implements InputStringsStrategy {
 				processComment(match, output);
 			}
 		}
-		return output;
+		listener.didFinishInputCreation(output);
 	}
 
 	protected void processComment(String string, StringsStructure output) {

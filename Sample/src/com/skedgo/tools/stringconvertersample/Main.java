@@ -4,9 +4,11 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		new SampleUtils().IOStoAndroidSample();
+		SampleUtils.getInstance().IOStoAndroidSample();
 		
-		new SampleUtils().IOStoJavaPropertiesSample();
+		SampleUtils.getInstance().IOStoJavaPropertiesSample();
+		
+		SampleUtils.getInstance().IOStoXLIFFSample();
 
 	}
 
