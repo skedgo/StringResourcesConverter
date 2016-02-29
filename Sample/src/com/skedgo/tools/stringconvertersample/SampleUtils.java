@@ -8,6 +8,7 @@ import com.skedgo.tools.platform.android.AndroidOutputStrategy;
 import com.skedgo.tools.platform.ios.IOSInputStrategy;
 import com.skedgo.tools.platform.java.JavaPropertiesOutputStrategy;
 import com.skedgo.tools.platform.xliff.XLIFFInputStrategy;
+import com.skedgo.tools.platform.xliff.XLIFFOutputStrategy;
 
 public class SampleUtils {
 
@@ -68,7 +69,7 @@ public class SampleUtils {
 		}
 	}
 
-	public void IOStoXLIFFSample() {
+	public void XLIFFtoIOSSample() {
 
 		InputStream input = this.getClass().getClassLoader().getResourceAsStream("assets/es.xliff");
 
@@ -82,6 +83,46 @@ public class SampleUtils {
 				public void didFinishInputCreation(StringsStructure structure) {
 					String output = outputStrategy.generateOutput(structure);
 					System.out.println(output);
+				}
+			});
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void IOStoXLIFFSample() {
+
+		final InputStream inputEN = this.getClass().getClassLoader().getResourceAsStream("assets/Localizable.strings");
+		final InputStream inputES = this.getClass().getClassLoader().getResourceAsStream("assets/Localizable_ES.strings");
+
+		final IOSInputStrategy inputStrategy = IOSInputStrategy.getInstance();
+		
+		final XLIFFOutputStrategy outputStrategy = XLIFFOutputStrategy.getInstance();
+
+		try {
+			inputStrategy.createInputValues(inputEN, new InputCreatorListener() {
+				@Override
+				public void didFinishInputCreation(final StringsStructure structureEN) {
+					
+					structureEN.setTargetLanguage("EN");
+					
+					try {
+						inputStrategy.createInputValues(inputES, new InputCreatorListener() {
+							@Override
+							public void didFinishInputCreation(final StringsStructure structureES) {
+								structureES.setBaseStructure(structureEN);
+								structureES.setTargetLanguage("ES");
+								String output = outputStrategy.generateOutput(structureES);
+								System.out.println(output);
+							}
+						});
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			});
 

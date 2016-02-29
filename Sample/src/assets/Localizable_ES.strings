@@ -1,0 +1,14 @@
+/* Simple string */
+"Hello" = "Hola"; 
+
+/* String definition with spaces */
+" at " = " en ";
+
+/* Format string */
+"%@ and %@" = "%1$@ y %2$@"; 
+
+/* Some strings with special chars */
+"Loading..." = "Cargando...";
+"There's no 'i' in team" = "No existe 'yo' en 'equipo'";
+"Thank you!" = "Gracias!";
+"2 + 2 = 4" = "2 + 2 = 4";

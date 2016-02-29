@@ -8,6 +8,8 @@ public class Main {
 		
 		SampleUtils.getInstance().IOStoJavaPropertiesSample();
 		
+		SampleUtils.getInstance().XLIFFtoIOSSample();
+		
 		SampleUtils.getInstance().IOStoXLIFFSample();
 
 	}
