@@ -1,12 +1,12 @@
 package com.skedgo.tools.platform.java;
 
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
-
 import com.skedgo.tools.OutputStringsStrategy;
 import com.skedgo.tools.model.StringDefinition;
 import com.skedgo.tools.model.StringsStructure;
+
+import java.util.Date;
+import java.util.Map;
+import java.util.Set;
 
 public class JavaPropertiesOutputStrategy implements OutputStringsStrategy {
 
@@ -72,11 +72,12 @@ public class JavaPropertiesOutputStrategy implements OutputStringsStrategy {
 
 	protected String cleanName(String name) {
 		// Only spaces for dots
-		return basicClean(name.replace(" ", ".").replace("=", "\\=").replace(":", "\\:"));
+		return basicClean(name.replace(" ", ".").replace("=", "_eq").replace(":", "_col")
+				.replace(">","_g").replace("<","_l").replace("%", "_pct").replace("!", "_n").replace("'", ""));
 	}
 
 	protected String cleanValue(String value) {
-		return createJavaPropertiesPatterns(basicClean(value));
+		return createJavaPropertiesPatterns(basicClean(value.replace("'", "''")));
 	}
 
 	protected String createJavaPropertiesPatterns(String string) {
