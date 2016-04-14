@@ -1,21 +1,19 @@
 package com.skedgo.tools.platform.xliff;
 
-import java.io.InputStream;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
+import com.skedgo.tools.InputCreatorListener;
+import com.skedgo.tools.InputStringsStrategy;
+import com.skedgo.tools.model.StringDefinition;
+import com.skedgo.tools.model.StringsStructure;
+import com.sun.istack.internal.NotNull;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.skedgo.tools.InputCreatorListener;
-import com.skedgo.tools.InputStringsStrategy;
-import com.skedgo.tools.model.StringDefinition;
-import com.skedgo.tools.model.StringsStructure;
-import com.sun.istack.internal.NotNull;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.InputStream;
 
 public class XLIFFInputStrategy implements InputStringsStrategy {
 
@@ -99,10 +97,12 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 		@Override
 		public void endElement(String uri, String localName, String qName) throws SAXException {
 
-			if (qName.equalsIgnoreCase("trans-unit") && target != null) {
+			if (qName.equalsIgnoreCase("trans-unit")) {
 				if (note != null) {
 					structure.getComments().put(structure.getDefinitions().size(), note);
 				}
+				if (target == null || target.isEmpty())
+					target = source;
 				structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(source, target));
 			}
 
