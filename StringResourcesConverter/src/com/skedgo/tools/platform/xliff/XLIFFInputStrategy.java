@@ -54,12 +54,14 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 		private boolean bNote;
 		private boolean bTarget;
 
+		private String id;
 		private String source;
 		private String note;
 		private String target;
 
 		public SAXLocalNameCount(@NotNull StringsStructure structure, @NotNull InputCreatorListener listener) {
 			this.structure = structure;
+			this.structure.setBaseStructure(new StringsStructure());
 			this.listener = listener;
 		}
 
@@ -82,6 +84,7 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 				source = null;
 				note = null;
 				target = null;
+				id = atts.getValue("id");
 			}
 
 			if (qName.equalsIgnoreCase("source")) {
@@ -99,11 +102,18 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 		@Override
 		public void endElement(String uri, String localName, String qName) throws SAXException {
 
-			if (qName.equalsIgnoreCase("trans-unit") && target != null) {
+			if (qName.equalsIgnoreCase("trans-unit")) {
 				if (note != null) {
 					structure.getComments().put(structure.getDefinitions().size(), note);
+					structure.getBaseStructure().getComments().put(structure.getDefinitions().size(), note);
 				}
-				structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(source, target));
+				if(target == null  || target.isEmpty()){
+					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, source));
+					
+				}else{
+					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, target));
+					structure.getBaseStructure().getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, source));
+				}
 			}
 
 		}
