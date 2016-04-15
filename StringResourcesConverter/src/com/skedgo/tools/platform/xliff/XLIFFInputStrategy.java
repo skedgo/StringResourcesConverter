@@ -111,7 +111,7 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, source));
 					
 				}else{
-					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(source, target));
+					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, target));
 					structure.getBaseStructure().getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, source));
 				}
 			}

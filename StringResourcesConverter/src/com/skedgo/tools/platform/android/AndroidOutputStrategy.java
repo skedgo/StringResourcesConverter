@@ -82,12 +82,13 @@ public class AndroidOutputStrategy implements OutputStringsStrategy {
 		name = basicClean(name);
 
 		// these are mainly iOS strings rules to adapt.
-		name = name.replace(" ", "_").replace(".", "_DOT").replace("!", "_EXCLAM").replace("%s", "nps")
+		name = name.replace(" ", "_").replace("\"", "").replace(".", "_DOT").replace("!", "_EXCLAM").replace("%s", "nps")
 				.replace("?", "_QUESTION").replace("\'", "_APOST").replace("/", "_SLASH").replace(",", "_COMA")
 				.replace("(", "_START_PARENT").replace(")", "_END_PARENT").replace("{", "_START_QBRAQUET")
 				.replace("}", "_END_QBRAQUET").replace("&amp;", "_AMPERSAND").replace("-", "_MINUS")
 				.replace("<", "_LESST").replace(">", "_MORET").replace("@", "_AT").replace("=", "_EQUAL")
-				.replace("%", "_PERC").replace("₂", "_2").replace("PERCAT", "_pattern").replace(":", "_2POINTS");
+				.replace("%", "_PERC").replace("₂", "_2").replace("PERCAT", "_pattern").replace(":", "_2POINTS")
+				.replace("\\n", "_").replace("…", "_DOT_DOT_DOT").replace("*", "ASTERISK");
 
 		if (Character.isDigit(name.charAt(0))) {
 			name = "_" + name;
