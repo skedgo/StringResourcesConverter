@@ -53,6 +53,7 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 		private boolean bSource;
 		private boolean bNote;
 		private boolean bTarget;
+		private boolean bAltTrans;
 
 		private String id;
 		private String source;
@@ -96,6 +97,10 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 			if (qName.equalsIgnoreCase("target")) {
 				bTarget = true;
 			}
+			
+			if (qName.equalsIgnoreCase("alt-trans")) {
+				bAltTrans = true;
+			}
 
 		}
 
@@ -115,6 +120,10 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 					structure.getBaseStructure().getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, source));
 				}
 			}
+			
+			if (qName.equalsIgnoreCase("alt-trans")) {
+				bAltTrans = false;
+			}
 
 		}
 
@@ -129,7 +138,7 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 				bNote = false;
 			}
 			if (bTarget) {
-				target = new String(ch, start, length);
+				if(!bAltTrans)	target = new String(ch, start, length);
 				bTarget = false;
 			}
 
