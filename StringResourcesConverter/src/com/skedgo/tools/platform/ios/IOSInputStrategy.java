@@ -1,16 +1,15 @@
 package com.skedgo.tools.platform.ios;
 
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.commons.io.IOUtils;
-
 import com.skedgo.tools.InputCreatorListener;
 import com.skedgo.tools.InputStringsStrategy;
 import com.skedgo.tools.model.StringDefinition;
 import com.skedgo.tools.model.StringsStructure;
+import org.apache.commons.io.IOUtils;
+
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class IOSInputStrategy implements InputStringsStrategy {
