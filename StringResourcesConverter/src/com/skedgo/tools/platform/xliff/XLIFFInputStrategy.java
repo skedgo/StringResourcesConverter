@@ -32,18 +32,24 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 		return instance;
 	}
 
-	@Override
-	public void createInputValues(InputStream input, InputCreatorListener listener) throws Exception {
+	
+	public void createInputValues(InputStream input, InputCreatorListener listener, String fileSourceType) throws Exception {
 		StringsStructure output = new StringsStructure();
 
 		SAXParserFactory spf = SAXParserFactory.newInstance();
 		spf.setNamespaceAware(true);
 		SAXParser saxParser = spf.newSAXParser();
 		XMLReader xmlReader = saxParser.getXMLReader();
-		xmlReader.setContentHandler(new SAXLocalNameCount(output, listener));
+		xmlReader.setContentHandler(new SAXLocalNameCount(output, listener, fileSourceType));
 		xmlReader.parse(new InputSource(input));
 
 	}
+	
+	@Override
+	public void createInputValues(InputStream input, InputCreatorListener listener) throws Exception {
+		createInputValues(input, listener, null);
+	}
+	
 
 	class SAXLocalNameCount extends DefaultHandler {
 
@@ -54,16 +60,20 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 		private boolean bNote;
 		private boolean bTarget;
 		private boolean bAltTrans;
+		
+		private boolean skipSource;
 
-		private String id;
 		private String source;
 		private String note;
 		private String target;
+		
+		private String file;
 
-		public SAXLocalNameCount(@NotNull StringsStructure structure, @NotNull InputCreatorListener listener) {
+		public SAXLocalNameCount(@NotNull StringsStructure structure, @NotNull InputCreatorListener listener, String fileSourceType) {
 			this.structure = structure;
 			this.structure.setBaseStructure(new StringsStructure());
 			this.listener = listener;
+			this.file = fileSourceType;
 		}
 
 		public void startDocument() throws SAXException {
@@ -79,13 +89,13 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 
 			if (qName.equals("file")) {
 				structure.setTargetLanguage(atts.getValue("target-language"));
+				skipSource = !(file == null || atts.getValue("original").endsWith(file));
 			}
 
 			if (qName.equalsIgnoreCase("trans-unit")) {
 				source = null;
 				note = null;
 				target = null;
-				id = atts.getValue("id");
 			}
 
 			if (qName.equalsIgnoreCase("source")) {
@@ -107,39 +117,51 @@ public class XLIFFInputStrategy implements InputStringsStrategy {
 		@Override
 		public void endElement(String uri, String localName, String qName) throws SAXException {
 
-			if (qName.equalsIgnoreCase("trans-unit")) {
+			if (!skipSource && qName.equalsIgnoreCase("trans-unit")) {
 				if (note != null) {
 					structure.getComments().put(structure.getDefinitions().size(), note);
 					structure.getBaseStructure().getComments().put(structure.getDefinitions().size(), note);
 				}
 				if(target == null  || target.isEmpty()){
-					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, source));
+					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(source, source));
 					
 				}else{
-					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, target));
-					structure.getBaseStructure().getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(id, source));
+					structure.getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(source, target));
+					structure.getBaseStructure().getDefinitions().put(structure.getDefinitions().size(), new StringDefinition(source, source));
 				}
 			}
 			
-			if (qName.equalsIgnoreCase("alt-trans")) {
-				bAltTrans = false;
-			}
 
+			bSource = false;
+			bNote = false;
+			bTarget = false;	
+			bAltTrans = false;
+			
+			
 		}
 
 		public void characters(char ch[], int start, int length) throws SAXException {
 
+			String characters = new String(ch, start, length);
+			
 			if (bSource) {
-				source = new String(ch, start, length);
-				bSource = false;
+				if(source == null) source = "";
+				source += characters;
+				
 			}
 			if (bNote) {
-				note = new String(ch, start, length);
-				bNote = false;
+				if(note == null) note = "";
+				note += characters;
+				
 			}
 			if (bTarget) {
-				if(!bAltTrans)	target = new String(ch, start, length);
-				bTarget = false;
+				
+				if(!bAltTrans)	{
+					if(target == null) target = "";
+					else target += " ";
+					
+					target += characters.trim();	
+				}				
 			}
 
 		}
