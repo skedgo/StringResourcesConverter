@@ -1,3 +1,5 @@
+*** DEPRECATED *** please, use main branch if your input/output strategy is supported
+
 # StringResourcesConverter
 
 
