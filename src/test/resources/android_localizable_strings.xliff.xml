@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+	<string name="access_to_your_calendar_is_required">Es necesario el acceso a tu calendario</string>
+	<string name="access_to_your_contacts_is_required">Es necesario el acceso a tus contactos</string>
+	<string name="add">Agregar</string>
+	<string name="add_location">Agregar una ubicación</string>
+	<string name="add_to_contacts">Agregar a contactos</string>
+	<string name="add_to_home_screen">Agregar en la pantalla de inicio</string>
+	<string name="view_your_daily_agenda_and_favourites_in_the_tabs_below">Ver su agenda diaria y los favoritos en las
+          pestañas de abajo</string>
+	<string name="all_alerts">Todas las Alertas</string>
+	<string name="all_your_calendars_are_invisible_coma_please_switch_them_on_in_native_calendar_app_or_account_settings_________">Todos tus calendarios están invisibles, por favor, cambielo en su aplicación nativa de calendario o en la configuración de la cuenta</string>
+	<string name="an_unexpected_network_error_has_occurred_dot_please_retry_dot">Ha ocurrido un error inesperado de red. Por
+          favor, intente nuevamente.</string>
+	<string name="approximately_nps_away">Aproximadamente a %s</string>
+	<string name="__start_parentarrive_">" (llegada "</string>
+	<string name="booking">Reservas</string>
+	<string name="cannot_add_reminder_for_past_trip">No puede agregar recordatorios a viajes en el
+          pasado</string>
+	<string name="error_placing_call">Error al realizar la llamada</string>
+	<string name="coordinates_2points_nps">Coordenadas: %s</string>
+	<string name="couldn_apostt_find_your_current_location">No se pudo detectar su ubicacion actual</string>
+	<string name="destination">destino</string>
+	<string name="delete_this_vehicle">Borrar este vehículo</string>
+	<string name="edit">Editar</string>
+	<string name="our_end_user_licence_agreement_has_changed_dot_you_must_agree_to_it_before_continuing_the_use_of_this_app_dot_________">Nuestro Acuerdo de Licencia con el Usuario Final (End User Licence Agreement) ha cambiado. Debe acordar la misma antes de continuar usando esta aplicación.</string>
+	<string name="edit_favorite">Editar favorito</string>
+	<string name="failed_to_resolve_location">No se pudo resolver la ubicación</string>
+	<string name="failed_to_resolve_link">No se pudo resolver el enlace</string>
+	<string name="get_off">Bajar</string>
+	<string name="first_2points">Primero:</string>
+	<string name="filter_by_service_name_coma_number_or_stop">Filtrar por nombre de servicio, número o
+          parada</string>
+	<string name="go_here">Ir aquí</string>
+	<string name="get_on">Subir</string>
+	<string name="information_on_concession_pricing_is_subject_to_availability_dot">La información relacionada a precios bonificados
+          está sujeta a disponibilidad.</string>
+	<string name="it_aposts_time_to_leave_exclam">Es hora de salir!</string>
+	<string name="leave_now_to_make_it_on_time">Debe salir ahora para llegar a tiempo</string>
+	<string name="go_to_now">Ir ahora</string>
+	<string name="events_from_those_calendars_will_be_used_in_planning_your_day">Los eventos de esos calendarios serán usados
+          para planificar tu día</string>
+	<string name="_1_minute">1 minuto</string>
+	<string name="new_vehicle">Nuevo vehículo</string>
+	<string name="location_not_found">Ubicación no encontrada</string>
+	<string name="location_selected">Ubicación seleccionada</string>
+	<string name="no_ratings_received">No hemos recibido opiniones</string>
+	<string name="no_services_available">No hay servicios disponibles</string>
+	<string name="no_favorite_locations_saved">Ubicación favorita no grabada</string>
+	<string name="there_was_an_error_and_it_was_reported_to_us_dot_please_try_again">Hubo un error y ya fue reportado. Por favor,
+          intente nuevamente</string>
+	<string name="origin">origen</string>
+	<string name="sorry_coma_that_location_is_outside_of_tripgo_aposts_range_exclam">Lo siento, esa ubicación está fuera del aclance
+          de TripGo!</string>
+	<string name="remove_from_favorites">Eliminar de favoritos</string>
+	<string name="refresh">Actualizar</string>
+	<string name="set_end_time">Establezca la hora de finalización</string>
+	<string name="select_calendars">Elegir calendarios</string>
+	<string name="save">Grabar</string>
+	<string name="routines_are_post_of_your_daily_movement_coma_but_they_aren_apostt_events_that_you_want_in_your_calendar__start_parente_dotg_dot_work_end_parent_dot_they_are_important_for_the_agenda_to_get_you_to_the_right_location_at_the_right_time_________">Las rutinas son la mayor parte de su movimiento diario, pero no son eventos que desee en el calendario (por ejemplo, trabajo). Son importantes para la Agenda para obtener la ubicación correcta en el momento adecuado</string>
+	<string name="notifications">Notificaciones</string>
+	<string name="about">Acerca de</string>
+	<string name="set_time">Definir hora</string>
+	<string name="set_start_time">Definir hora de inicio</string>
+	<string name="set_location">Definir ubicación</string>
+	<string name="show_an_alert_to_leave_at_the_start_of_a_trip">Mostrar un alerta para salir al inicio de un
+          viaje</string>
+	<string name="show_an_alert_before_any_public_transport_on_your_trip">Mostrar un alerta previo a cualqueir transporte
+          público en su viaje</string>
+	<string name="show_service_alerts_which_affect_your_upcoming_trips">Mostrar alertas de servicios que afectan sus
+          próximos viajes</string>
+	<string name="show_an_alert_towards_the_end_of_any_public_transport_on_your_trip">Mostrar un alerta cerca del final de cualquier
+          transporte publico en los viajes</string>
+	<string name="start_of_trip">Inicio del viaje</string>
+	<string name="service_alerts">Servicio de alertas</string>
+	<string name="start_of_public_transport">Inicio de transporte público</string>
+	<string name="server">Servidor</string>
+	<string name="version">Versión</string>
+	<string name="cycling_speed">Vel. en bicicleta</string>
+	<string name="end_of_public_transport">Fin del transporte público</string>
+	<string name="sorted_by_price">Ordenado por precio</string>
+	<string name="sorted_by_preferred">Ordenado por preferencia</string>
+	<string name="error_downloading_services">Error obteniendo servicios</string>
+	<string name="share_this_result">Compartir resultado</string>
+	<string name="share_timetable_info">Compratir horario</string>
+	<string name="sort_by">Ordenar por</string>
+	<string name="sorted_by_arrival">Ordenado por hora de llegada</string>
+	<string name="sorted_by_departure">Ordenado por hora de llegada</string>
+	<string name="sorted_by_duration">Ordenado por duración</string>
+	<string name="view_on_yelp">Ver en Yelp</string>
+	<string name="upcoming_services">Próximos Servicios</string>
+	<string name="unknown_location">Ubicación desconocida</string>
+	<string name="waiting_for_location_signal_coma_if_fails_coma_you_can_try_turning_your_gps_off_and_on_dot_dot_________">Esperando la señal del GPS, si falla, puede
+          intentar desactivando y volviendo a activarel GPS</string>
+	<string name="upcoming_services">Próximos servicios</string>
+	<string name="view_timetable_of_upcoming_services">Ver Horarios de próximos servicios</string>
+	<string name="tomorrow">Mañana</string>
+	<string name="today">Hoy</string>
+	<string name="no_services_found_for_this_stop">No se encontraron servicios para esta parada</string>
+	<string name="trip_to_nps">Viaje a %s</string>
+	<string name="yesterday">Ayer</string>
+	<string name="your_trip_is_about_to_start">Tu viaje está por comenzar</string>
+	<string name="you_are_here">Usted está acá</string>
+	<!--Settings option to enable/disable news (notifications).-->
+	<string name="news">Noticias</string>
+	<!--In transport mode detail, setting to enable that transport mode to be included in
+          trips.
+        -->
+	<string name="include_in_trips">Incluir en viajes</string>
+	<!--Used for parking slots. Format string for multiple slots. Example: 10 slots
+          available
+        -->
+	<string name="nps_slots_available">%s espacios disponibles</string>
+	<!--Used for parking slots. Format string for one slots. Example: 1 slot available-->
+	<string name="nps_slot_available">%s espacio disponible</string>
+	<!--Used for parking slots, when there's no slot available.-->
+	<string name="no_slot_available">No hay espacios disponibles</string>
+	<!--Parking slots, updated time. Example: Updated at 10am-->
+	<string name="updated_at_2points_nps">Actualizado: %s</string>
+	<!--Occupancy almost full-->
+	<string name="almost_full">Casi lleno</string>
+	<!--"Understood" button label-->
+	<string name="got_it">Entendido</string>
+	<!--Add favourite direct access message-->
+	<string name="see_your_favourites_on_your_home_screen_exclam">¡Ve a tus favoritos en su pantalla de inicio!</string>
+	<!--Add favourite direct access description-->
+	<string name="you_can_quickly_access_your_favourite_locations_from_your_launcher_dot">Puedes acceder rápidamente a tus ubicaciones favoritas desde inicio.</string>
+	<!--%2$s direct access action label. For example, "Add favourite direct access action label"-->
+	<string name="just_tap__perc1$s_then__apost_perc2$s_apost">Simplemente toque %1$s y luego \'%2$s\'</string>
+</resources>
