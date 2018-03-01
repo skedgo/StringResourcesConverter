@@ -1,8 +1,8 @@
 package com.skedgo.tools.platform.xliff
 
 import com.skedgo.tools.InputStringsStrategy
-import com.skedgo.tools.model.TransUnit
-import com.skedgo.tools.model.Translations
+import com.skedgo.tools.translations.TransUnit
+import com.skedgo.tools.translations.Translations
 import org.xml.sax.Attributes
 import org.xml.sax.InputSource
 import org.xml.sax.helpers.DefaultHandler
@@ -12,7 +12,7 @@ import java.io.InputStream
 import javax.xml.parsers.SAXParser
 import javax.xml.parsers.SAXParserFactory
 
-class XLIFFInputStrategy(var fileSourceType: String? = null) : InputStringsStrategy {
+class XLIFFInputStrategy : InputStringsStrategy {
 
     val completed: BehaviorSubject<Translations> = BehaviorSubject.create()
 
@@ -44,8 +44,6 @@ class XLIFFInputStrategy(var fileSourceType: String? = null) : InputStringsStrat
         private var readingTarget: Boolean = false
         private var readingAltTrans: Boolean = false
 
-        private var skipFile: Boolean = false
-
         private var id: String = ""
         private var source: String = ""
         private var note: String = ""
@@ -59,10 +57,8 @@ class XLIFFInputStrategy(var fileSourceType: String? = null) : InputStringsStrat
 
         override fun startElement(namespaceURI: String?, localName: String?, qName: String, atts: Attributes?) {
             when {
-                qName == "file" && atts != null -> {
+                qName == "file" && atts != null ->
                     structure.targetLanguage = atts.getValue("target-language")
-                    skipFile = shouldSkipFile(atts)
-                }
                 qName == "trans-unit" -> {
                     id = atts?.let { atts.getValue("id") } ?: ""
                     source = ""
@@ -76,12 +72,8 @@ class XLIFFInputStrategy(var fileSourceType: String? = null) : InputStringsStrat
             }
         }
 
-        private fun shouldSkipFile(atts: Attributes) =
-                !(fileSourceType?.let { atts.getValue("original").endsWith(it) }
-                        ?: true)
-
         override fun endElement(uri: String?, localName: String?, qName: String) {
-            if (!skipFile && qName == "trans-unit") {
+            if (qName == "trans-unit") {
                 structure.transUnits.add(TransUnit(id, source, resolveTarget(), note))
             }
 

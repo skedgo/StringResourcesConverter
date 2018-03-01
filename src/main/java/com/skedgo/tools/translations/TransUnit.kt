@@ -1,4 +1,4 @@
-package com.skedgo.tools.model
+package com.skedgo.tools.translations
 
 data class TransUnit(
         var id: String,

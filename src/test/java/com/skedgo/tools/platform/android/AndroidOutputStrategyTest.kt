@@ -1,7 +1,9 @@
 package com.skedgo.tools.platform.android
 
-import com.skedgo.tools.model.TransUnit
-import com.skedgo.tools.model.Translations
+import com.skedgo.tools.translations.TransUnit
+import com.skedgo.tools.translations.Translations
+import com.skedgo.tools.translations.cleanSource
+import com.skedgo.tools.translations.cleanTarget
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should start with`
 import org.junit.Test
@@ -164,5 +166,28 @@ class AndroidOutputStrategyTest {
         assertCorrectHeaderAndFooter(stringResource)
         lines[2] `should be equal to` "\t<!--This is the first story line-->"
         lines[3] `should be equal to` "\t<string name=\"story_start_for__pattern\">\" había %1\$s vez %2\$s \\'en\\' \"</string>"
+    }
+
+    @Test
+    fun `should clean source with source rules`() {
+        // Arrange.
+        val transUnit = TransUnit("", "&%@' OK", "", "")
+
+        // Act.
+        transUnit.cleanSource(AndroidOutputStrategy().sourceTransformationRules)
+        // Assert.
+        transUnit.source `should be equal to` "_ampersand_pattern_apost_ok"
+    }
+
+    @Test
+    fun `should clean target with target rules`() {
+        // Arrange.
+        val transUnit = TransUnit("", "", " &%@' ", "")
+
+        // Act.
+        transUnit.cleanTarget(AndroidOutputStrategy().targetTransformationRules)
+
+        // Assert.
+        transUnit.target `should be equal to` "\" &amp;%1\$s\\' \""
     }
 }

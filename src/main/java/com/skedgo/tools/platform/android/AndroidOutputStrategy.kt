@@ -1,17 +1,37 @@
 package com.skedgo.tools.platform.android
 
 import com.skedgo.tools.OutputStringsStrategy
-import com.skedgo.tools.model.Translations
+import com.skedgo.tools.platform.android.rules.*
+import com.skedgo.tools.rules.TransformationRule
+import com.skedgo.tools.translations.Translations
 import rx.Single
 import java.util.*
 
 
-class AndroidOutputStrategy : OutputStringsStrategy {
+class AndroidOutputStrategy : OutputStringsStrategy() {
+
+    override val sourceTransformationRules: List<TransformationRule> =
+            listOf(
+                    EncodeAmpersandRule,
+                    AndroidPatternsRule,
+                    ValidAndroidIdentifierRule,
+                    AddFriendlyPrefixRule,
+                    LowerCaseRule
+            )
+
+    override val targetTransformationRules: List<TransformationRule> =
+            listOf(
+                    EncodeAmpersandRule,
+                    AndroidPatternsRule,
+                    AndroidPatternsListRule,
+                    EscapeApostropheRule,
+                    QuotesRule
+            )
 
     var addTimeGeneration = true
     private val androidStrings = StringBuffer()
 
-    override fun generateOutput(translations: Translations): Single<String> =
+    override fun generateOutputText(translations: Translations): Single<String> =
             Single.fromCallable {
                 addAndroidStringsHeader()
                 addStringTranslations(translations)
@@ -23,7 +43,6 @@ class AndroidOutputStrategy : OutputStringsStrategy {
 
     private fun addStringTranslations(translations: Translations) {
         translations.transUnits
-                .map { it.clean() }
                 .forEach {
                     addComment(it.note)
                     addTranslation(it.source, it.target)

@@ -17,7 +17,7 @@ class StrategiesTest {
                 .getResourceAsStream("es.xml")
         val xmlStringExpected = IOUtils.toString(xmlExpected, "UTF-8")
 
-        val inputStrategy = XLIFFInputStrategy("strings")
+        val inputStrategy = XLIFFInputStrategy()
         val outputStrategy = AndroidOutputStrategy()
         outputStrategy.addTimeGeneration = false
 

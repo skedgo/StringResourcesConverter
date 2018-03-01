@@ -1,6 +1,6 @@
 package com.skedgo.tools
 
-import com.skedgo.tools.model.Translations
+import com.skedgo.tools.translations.Translations
 import rx.Single
 import java.io.InputStream
 
