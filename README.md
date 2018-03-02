@@ -1,5 +1,5 @@
 # StringResourcesConverter
-
+<a href="https://travis-ci.org/skedgo/StringResourcesConverter"><img src='https://travis-ci.org/skedgo/StringResourcesConverter.svg?branch=master'></a>
 
 ## Install
 
