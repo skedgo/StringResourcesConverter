@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/StringResourcesConverter.iml" filepath="$PROJECT_DIR$/StringResourcesConverter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/string-resources-converter.iml" filepath="$PROJECT_DIR$/.idea/modules/string-resources-converter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/string-resources-converter_main.iml" filepath="$PROJECT_DIR$/.idea/modules/string-resources-converter_main.iml" group="string-resources-converter" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/string-resources-converter_test.iml" filepath="$PROJECT_DIR$/.idea/modules/string-resources-converter_test.iml" group="string-resources-converter" />
     </modules>
   </component>
 </project>
