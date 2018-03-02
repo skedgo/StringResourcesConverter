@@ -7,37 +7,51 @@ buildscript {
   }
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"
-    classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.5.2"
   }
 }
 
+plugins {
+  id "com.jfrog.bintray" version "1.7"
+}
+
 group 'com.skedgo'
-version '0.1.0'
+version '0.1.1'
 
-apply plugin: 'kotlin-platform-jvm'
-apply plugin: 'java-library'
-apply plugin: "maven"
-apply plugin: "com.jfrog.bintray"
-apply plugin: "com.jfrog.artifactory"
+allprojects {
+  repositories {
+    mavenCentral()
+    jcenter()
+  }
+  apply plugin: 'kotlin-platform-jvm'
+  apply plugin: 'maven'
+  apply plugin: 'maven-publish'
+  apply plugin: 'java'
+}
 
-repositories {
-  mavenCentral()
-  jcenter()
+publishing {
+  publications {
+    MyPublication(MavenPublication) {
+      from components.java
+      groupId 'com.skedgo'
+      artifactId 'string-resources-converter'
+      version '0.1.1'
+    }
+  }
 }
 
 bintray {
-  user = System.getenv('BINTRAY_USER')
-  key = System.getenv('BINTRAY_KEY')
+  user = "elagarrigue"
+  key = "e161078e2c52c840e866cbea357183556da808d1"
+  publications = ['MyPublication']
   configurations = ['archives']
-
   pkg {
     repo = 'maven'
     name = 'string-resources-converter'
+    userOrg = user
     licenses = ['MIT']
     vcsUrl = 'https://github.com/skedgo/StringResourcesConverter.git'
     version {
-      name = '0.1.0'
+      name = '0.1.1'
     }
   }
 }
@@ -61,6 +75,15 @@ compileKotlin {
 }
 compileTestKotlin {
   kotlinOptions.jvmTarget = "1.8"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = "sources"
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives sourcesJar
 }
 
 install {
