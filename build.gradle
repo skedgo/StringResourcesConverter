@@ -2,10 +2,13 @@ buildscript {
   ext.kotlin_version = '1.2.21'
 
   repositories {
+    jcenter()
     mavenCentral()
   }
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"
+    classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.5.2"
   }
 }
 
@@ -13,10 +16,30 @@ group 'com.skedgo'
 version '0.1.0'
 
 apply plugin: 'kotlin-platform-jvm'
+apply plugin: 'java-library'
+apply plugin: "maven"
+apply plugin: "com.jfrog.bintray"
+apply plugin: "com.jfrog.artifactory"
 
 repositories {
   mavenCentral()
   jcenter()
+}
+
+bintray {
+  user = System.getenv('BINTRAY_USER')
+  key = System.getenv('BINTRAY_KEY')
+  configurations = ['archives']
+
+  pkg {
+    repo = 'maven'
+    name = 'string-resources-converter'
+    licenses = ['MIT']
+    vcsUrl = 'https://github.com/skedgo/StringResourcesConverter.git'
+    version {
+      name = '0.1.0'
+    }
+  }
 }
 
 dependencies {
@@ -38,4 +61,11 @@ compileKotlin {
 }
 compileTestKotlin {
   kotlinOptions.jvmTarget = "1.8"
+}
+
+install {
+  repositories.mavenInstaller.pom.project {
+    name "string-resources-converter"
+    description "String Resources Converter"
+  }
 }

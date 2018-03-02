@@ -1,0 +1,7 @@
+siteUrl = https://github.com/skedgo/StringResourcesConverter
+gitUrl = https://github.com/skedgo/StringResourcesConverter
+version = 0.1.0
+groupId = com.skedgo
+licenses = MIT
+id = string-resources-converter
+name = string-resources-converter
