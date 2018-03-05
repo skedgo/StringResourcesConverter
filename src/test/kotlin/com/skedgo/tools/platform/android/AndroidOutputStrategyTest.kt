@@ -180,6 +180,17 @@ class AndroidOutputStrategyTest {
     }
 
     @Test
+    fun `should clean source when identifier is a keyword`() {
+        // Arrange.
+        val transUnit = TransUnit("", "Void", "", "")
+
+        // Act.
+        transUnit.cleanSource(AndroidOutputStrategy().sourceTransformationRules)
+        // Assert.
+        transUnit.source `should be equal to` "void_"
+    }
+
+    @Test
     fun `should clean target with target rules`() {
         // Arrange.
         val transUnit = TransUnit("", "", " &%@' ", "")

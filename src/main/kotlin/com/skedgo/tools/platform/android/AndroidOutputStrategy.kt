@@ -16,7 +16,8 @@ class AndroidOutputStrategy : OutputStringsStrategy() {
                     AndroidPatternsRule,
                     ValidAndroidIdentifierRule,
                     AddFriendlyPrefixRule,
-                    LowerCaseRule
+                    LowerCaseRule,
+                    AndroidKeywordRule
             )
 
     override val targetTransformationRules: List<TransformationRule> =
