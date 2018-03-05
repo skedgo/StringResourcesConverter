@@ -15,7 +15,7 @@ plugins {
 }
 
 group 'com.skedgo'
-version '0.1.1'
+version '0.1.2'
 
 allprojects {
   repositories {
@@ -34,14 +34,14 @@ publishing {
       from components.java
       groupId 'com.skedgo'
       artifactId 'string-resources-converter'
-      version '0.1.1'
+      version '0.1.2'
     }
   }
 }
 
 bintray {
-  user = "elagarrigue"
-  key = "e161078e2c52c840e866cbea357183556da808d1"
+  user = project.properties['BINTRAY_USER']
+  key = project.properties['BINTRAY_KEY']
   publications = ['MyPublication']
   configurations = ['archives']
   pkg {
@@ -51,7 +51,7 @@ bintray {
     licenses = ['MIT']
     vcsUrl = 'https://github.com/skedgo/StringResourcesConverter.git'
     version {
-      name = '0.1.1'
+      name = '0.1.2'
     }
   }
 }
