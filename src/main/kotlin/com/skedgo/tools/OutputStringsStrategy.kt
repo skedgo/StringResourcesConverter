@@ -6,12 +6,12 @@ import com.skedgo.tools.translations.cleanSource
 import com.skedgo.tools.translations.cleanTarget
 import rx.Single
 
-abstract class OutputStringsStrategy {
+interface OutputStringsStrategy {
 
-    abstract val sourceTransformationRules: List<TransformationRule>
-    abstract val targetTransformationRules: List<TransformationRule>
+    val sourceTransformationRules: List<TransformationRule>
+    val targetTransformationRules: List<TransformationRule>
 
-    abstract fun generateOutputText(translations: Translations): Single<String>
+    fun generateOutputText(translations: Translations): Single<String>
 
     fun generateOutput(translations: Translations): Single<String> =
             cleanTranslations(translations)

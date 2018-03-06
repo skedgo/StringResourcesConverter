@@ -8,7 +8,7 @@ import rx.Single
 import java.util.*
 
 
-class AndroidOutputStrategy : OutputStringsStrategy() {
+class AndroidOutputStrategy : OutputStringsStrategy {
 
     override val sourceTransformationRules: List<TransformationRule> =
             listOf(
@@ -34,6 +34,7 @@ class AndroidOutputStrategy : OutputStringsStrategy() {
 
     override fun generateOutputText(translations: Translations): Single<String> =
             Single.fromCallable {
+                androidStrings.setLength(0)
                 addAndroidStringsHeader()
                 addStringTranslations(translations)
                 addAndroidStringsFooter()

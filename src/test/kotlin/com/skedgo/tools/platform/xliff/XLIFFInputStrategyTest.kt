@@ -3,6 +3,7 @@ package com.skedgo.tools.platform.xliff
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
 import org.junit.Test
+import rx.Observable
 
 class XLIFFInputStrategyTest {
 
@@ -32,7 +33,7 @@ class XLIFFInputStrategyTest {
         translation.transUnits[1].note `should equal` "Title for button to access agenda"
         translation.transUnits[2].id `should equal` "Alerts"
         translation.transUnits[2].source `should equal` "Alerts"
-        translation.transUnits[2].target `should equal` "Alerts"
+        translation.transUnits[2].target `should equal` "Alertas"
         translation.transUnits[2].note `should equal` "No comments..."
     }
 
@@ -94,5 +95,28 @@ class XLIFFInputStrategyTest {
         translation.transUnits[2].source `should equal` "Alerts"
         translation.transUnits[2].target `should equal` "Alerts"
         translation.transUnits[2].note `should equal` "No comments..."
+    }
+
+    @Test
+    fun `should create a strings structure from multiple sources`() {
+        // Arrange.
+        val xliffStreamES = this.javaClass.classLoader
+                .getResourceAsStream("es.xliff")
+        val xliffStreamEN = this.javaClass.classLoader
+                .getResourceAsStream("en.xliff")
+
+        // Act & Assert.
+        val translation =
+                Observable.from(listOf(xliffStreamES, xliffStreamEN))
+                        .flatMapSingle{ XLIFFInputStrategy().createInputValues(it)}
+                        .test()
+                        .assertNoErrors()
+                        .assertValueCount(2)
+                        .assertCompleted()
+                        .onNextEvents
+
+        // Assert.
+        translation[0].transUnits.size `should be` 3
+        translation[1].transUnits.size `should be` 3
     }
 }

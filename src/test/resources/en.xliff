@@ -7,7 +7,7 @@
     <body>      
       <trans-unit id="test">
         <source>Some text</source>
-        <target>Algun texto</target>
+        <target>Some text</target>
         <note>Some text example</note>
       </trans-unit>
       <trans-unit id="Agenda">
@@ -17,7 +17,7 @@
       </trans-unit>
       <trans-unit id="Alerts">
         <source>Alerts</source>
-        <target>Alertas</target>
+        <target>Alerts</target>
         <note>No comments...</note>
       </trans-unit>      
     </body>

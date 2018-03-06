@@ -7,6 +7,7 @@ import com.skedgo.tools.translations.cleanTarget
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should start with`
 import org.junit.Test
+import rx.Observable
 
 class AndroidOutputStrategyTest {
 
@@ -200,5 +201,45 @@ class AndroidOutputStrategyTest {
 
         // Assert.
         transUnit.target `should be equal to` "\" &amp;%1\$s\\' \""
+    }
+
+    @Test
+    fun `should create strings resources from two sources`() {
+        // Arrange.
+        val transUnit1 = TransUnit(
+                "one",
+                "one",
+                "uno",
+                "Number 1")
+        val translations1 = Translations(mutableListOf(transUnit1))
+        val transUnit2 = TransUnit(
+                "two",
+                "two",
+                "dos",
+                "Number 2")
+        val translations2 = Translations(mutableListOf(transUnit2))
+
+        val androidOutputStrategy = AndroidOutputStrategy()
+        androidOutputStrategy.addTimeGeneration = false
+        // Act.
+        val stringResource =
+                Observable.from(listOf(translations1, translations2))
+                        .flatMapSingle{androidOutputStrategy.generateOutput(it)}
+                        .test()
+                        .assertNoErrors()
+                        .assertCompleted()
+                        .onNextEvents
+
+        // Assert.
+        stringResource[0] `should be equal to` "<?xml version='1.0' encoding='UTF-8'?>\n" +
+                "<resources>\n" +
+                "\t<!--Number 1-->\n" +
+                "\t<string name=\"one\">uno</string>\n" +
+                "</resources>"
+        stringResource[1] `should be equal to` "<?xml version='1.0' encoding='UTF-8'?>\n" +
+                "<resources>\n" +
+                "\t<!--Number 2-->\n" +
+                "\t<string name=\"two\">dos</string>\n" +
+                "</resources>"
     }
 }

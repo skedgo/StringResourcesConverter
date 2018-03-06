@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--Some text example-->
-  <string name="some_text">Algun texto</string>
+  <string name="some_text">Some text</string>
   <!--Title for button to access agenda-->
   <string name="agenda">Agenda</string>
   <!--No comments...-->
-  <string name="alerts">Alertas</string>
+  <string name="alerts">Alerts</string>
 </resources>
