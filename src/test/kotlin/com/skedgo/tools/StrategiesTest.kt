@@ -36,6 +36,32 @@ class StrategiesTest {
     }
 
     @Test
+    fun `should translate ios xliff to android`(){
+        // Arrange.
+        val xliffStream = this.javaClass.classLoader
+                .getResourceAsStream("es_ios.xliff")
+        val xmlExpected = this.javaClass.classLoader
+                .getResourceAsStream("es_ios.xml")
+        val xmlStringExpected = IOUtils.toString(xmlExpected, "UTF-8")
+
+        val inputStrategy = XLIFFInputStrategy()
+        val outputStrategy = AndroidOutputStrategy()
+        outputStrategy.addTimeGeneration = false
+
+        // Act & Assert.
+        val translationXml =
+                inputStrategy.createInputValues(xliffStream)
+                        .flatMap { outputStrategy.generateOutput(it) }
+                .test()
+                .assertNoErrors()
+                .assertValueCount(1)
+                .assertCompleted()
+                .onNextEvents[0]
+
+        translationXml.replace("\t", "  ") `should be equal to` xmlStringExpected
+    }
+
+    @Test
     fun `should translate multiple xliff files to android`(){
         // Arrange.
         val xliffStreamES = this.javaClass.classLoader

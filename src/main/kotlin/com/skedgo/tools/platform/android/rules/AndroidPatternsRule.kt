@@ -7,7 +7,7 @@ import com.skedgo.tools.rules.TransformationRule.ReplacementRule
 object AndroidPatternsRule : ReplacementRule(
         listOf(
                 Pair(StringPattern("%ld"), "PERCAT"),
-                Pair(StringPattern("%@"), "PERCAT"),
-                Pair(RegexPattern("%\\d@".toRegex()), "PERCAT")
-        )
+                Pair(RegexPattern("%\\d\\$@".toRegex()), "PERCAT"),
+                Pair(StringPattern("%@"), "PERCAT")
+                )
 )

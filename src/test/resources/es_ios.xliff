@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file datatype="plaintext" original="Localizable.strings" source-language="en" target-language="es">
+    <header>
+      <tool build-num="7C1002" tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2.1" />
+    </header>
+    <body>
+      <trans-unit id="hdH-hg-i0a.text">
+        <source> 1. Select your trip
+ 2. Choose ticket and set up payment method
+ 3. Scan QR code to use ticket
+ 4. Your tickets are found in My Bookings</source>
+        <target xml:lang="es" state="translated">1. Seleccione su viaje
+2. Eleja ticket y configure el método de pago
+3. Escanéa el código QR para utilizar el ticket
+4. Sus tickets se encuentran en Mis reservas</target>
+        <note>Class = "UILabel"; text = " 1. Select your trip\n 2. Choose ticket and set up payment method\n 3. Scan QR code to use ticket\n 4. Your tickets are found in My Bookings"; ObjectID = "hdH-hg-i0a";</note>
+      </trans-unit>
+    </body>
+  </file>
+  </xliff>

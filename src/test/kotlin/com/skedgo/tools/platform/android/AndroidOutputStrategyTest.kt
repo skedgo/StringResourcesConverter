@@ -151,7 +151,7 @@ class AndroidOutputStrategyTest {
         val transUnit = TransUnit(
                 "once upon a time",
                 "story start for %@",
-                " había %@ vez %@ 'en' ",
+                " había %1$@ vez %2$@ 'en' ",
                 "This is the first story line")
         val translations = Translations(mutableListOf(transUnit))
 

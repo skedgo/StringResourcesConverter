@@ -94,7 +94,7 @@ class XLIFFInputStrategy : InputStringsStrategy {
             when {
                 readingSource -> source += characters
                 readingNote -> note += characters
-                readingTarget && !readingAltTrans -> target += characters.trim { it <= ' ' }
+                readingTarget && !readingAltTrans -> target += characters
             }
         }
     }

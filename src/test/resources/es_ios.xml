@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--Class = "UILabel"; text = " 1. Select your trip\n 2. Choose ticket and set up payment method\n 3. Scan QR code to use ticket\n 4. Your tickets are found in My Bookings"; ObjectID = "hdH-hg-i0a";-->
+  <string name="_1_dot_select_your_trip__2_dot_choose_ticket_and_set_up_payment_method__3_dot_scan_qr_code_to_use_ticket__4_dot_your_tickets_are_found_in_my_bookings">1. Seleccione su viaje
+2. Eleja ticket y configure el método de pago
+3. Escanéa el código QR para utilizar el ticket
+4. Sus tickets se encuentran en Mis reservas</string>
+</resources>

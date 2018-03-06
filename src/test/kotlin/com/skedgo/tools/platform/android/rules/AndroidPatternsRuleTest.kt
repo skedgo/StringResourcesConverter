@@ -9,7 +9,7 @@ class AndroidPatternsRuleTest {
     @Test
     fun `should transform into a valid identifier`() {
         // Arrange.
-        val string = "%ld%@%1@%2@"
+        val string = "%ld%@%1$@%2$@"
 
         // Act.
         val updatedString = string.applyRule(AndroidPatternsRule)
