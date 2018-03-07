@@ -2,8 +2,6 @@ package com.skedgo.tools.platform.android
 
 import com.skedgo.tools.translations.TransUnit
 import com.skedgo.tools.translations.Translations
-import com.skedgo.tools.translations.cleanSource
-import com.skedgo.tools.translations.cleanTarget
 import org.amshove.kluent.`should be equal to`
 import org.amshove.kluent.`should start with`
 import org.junit.Test
@@ -21,12 +19,22 @@ class AndroidOutputStrategyTest {
     }
 
     @Test
+    fun `should have right rules set`() {
+        // Arrange.
+        val inputStrategy = AndroidOutputStrategy()
+
+        // Assert.
+        inputStrategy.rules.sourceTransformationRules.size `should be equal to` 6
+        inputStrategy.rules.targetTransformationRules.size `should be equal to` 5
+    }
+
+    @Test
     fun `should create empty strings resource`() {
         // Arrange.
         val translations = Translations(mutableListOf())
 
         // Act.
-        val stringResource = AndroidOutputStrategy().generateOutput(translations)
+        val stringResource = AndroidOutputStrategy().generateOutputWithRules(translations)
                 .test()
                 .assertNoErrors()
                 .assertCompleted()
@@ -47,7 +55,7 @@ class AndroidOutputStrategyTest {
         val translations = Translations(mutableListOf(transUnit))
 
         // Act.
-        val stringResource = AndroidOutputStrategy().generateOutput(translations)
+        val stringResource = AndroidOutputStrategy().generateOutputWithRules(translations)
                 .test()
                 .assertNoErrors()
                 .assertCompleted()
@@ -76,7 +84,7 @@ class AndroidOutputStrategyTest {
         val translations = Translations(mutableListOf(transUnitOne, transUnitTwo))
 
         // Act.
-        val stringResource = AndroidOutputStrategy().generateOutput(translations)
+        val stringResource = AndroidOutputStrategy().generateOutputWithRules(translations)
                 .test()
                 .assertNoErrors()
                 .assertCompleted()
@@ -107,7 +115,7 @@ class AndroidOutputStrategyTest {
         val translations = Translations(mutableListOf(transUnitOne, transUnitTwo))
 
         // Act.
-        val stringResource = AndroidOutputStrategy().generateOutput(translations)
+        val stringResource = AndroidOutputStrategy().generateOutputWithRules(translations)
                 .test()
                 .assertNoErrors()
                 .assertCompleted()
@@ -132,7 +140,7 @@ class AndroidOutputStrategyTest {
         val translations = Translations(mutableListOf(transUnit))
 
         // Act.
-        val stringResource = AndroidOutputStrategy().generateOutput(translations)
+        val stringResource = AndroidOutputStrategy().generateOutputWithRules(translations)
                 .test()
                 .assertNoErrors()
                 .assertCompleted()
@@ -156,7 +164,7 @@ class AndroidOutputStrategyTest {
         val translations = Translations(mutableListOf(transUnit))
 
         // Act.
-        val stringResource = AndroidOutputStrategy().generateOutput(translations)
+        val stringResource = AndroidOutputStrategy().generateOutputWithRules(translations)
                 .test()
                 .assertNoErrors()
                 .assertCompleted()
@@ -175,9 +183,12 @@ class AndroidOutputStrategyTest {
         val transUnit = TransUnit("", "&%@' OK", "", "")
 
         // Act.
-        transUnit.cleanSource(AndroidOutputStrategy().sourceTransformationRules)
+        val newSource = AndroidOutputStrategy().rules.applyRules(Translations(mutableListOf(transUnit)))
+                .test()
+                .onNextEvents[0].transUnits[0].source
+
         // Assert.
-        transUnit.source `should be equal to` "_ampersand_pattern_apost_ok"
+        newSource `should be equal to` "_ampersand_pattern_apost_ok"
     }
 
     @Test
@@ -186,9 +197,12 @@ class AndroidOutputStrategyTest {
         val transUnit = TransUnit("", "Void", "", "")
 
         // Act.
-        transUnit.cleanSource(AndroidOutputStrategy().sourceTransformationRules)
+        val newSource = AndroidOutputStrategy().rules.applyRules(Translations(mutableListOf(transUnit)))
+                .test()
+                .onNextEvents[0].transUnits[0].source
+
         // Assert.
-        transUnit.source `should be equal to` "void_"
+        newSource `should be equal to` "void_"
     }
 
     @Test
@@ -197,10 +211,11 @@ class AndroidOutputStrategyTest {
         val transUnit = TransUnit("", "", " &%@' ", "")
 
         // Act.
-        transUnit.cleanTarget(AndroidOutputStrategy().targetTransformationRules)
-
+        val newTarget = AndroidOutputStrategy().rules.applyRules(Translations(mutableListOf(transUnit)))
+                .test()
+                .onNextEvents[0].transUnits[0].target
         // Assert.
-        transUnit.target `should be equal to` "\" &amp;%1\$s\\' \""
+        newTarget `should be equal to` "\" &amp;%1\$s\\' \""
     }
 
     @Test
@@ -224,7 +239,7 @@ class AndroidOutputStrategyTest {
         // Act.
         val stringResource =
                 Observable.from(listOf(translations1, translations2))
-                        .flatMapSingle{androidOutputStrategy.generateOutput(it)}
+                        .flatMapSingle { androidOutputStrategy.generateOutputWithRules(it) }
                         .test()
                         .assertNoErrors()
                         .assertCompleted()
@@ -262,7 +277,7 @@ class AndroidOutputStrategyTest {
         androidOutputStrategy.addTimeGeneration = false
 
         // Act.
-        val stringResource = androidOutputStrategy.generateOutput(translations)
+        val stringResource = androidOutputStrategy.generateOutputWithRules(translations)
                 .test()
                 .assertNoErrors()
                 .assertCompleted()

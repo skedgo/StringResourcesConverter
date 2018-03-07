@@ -15,7 +15,7 @@ plugins {
 }
 
 group 'com.skedgo'
-version '0.1.5'
+version '0.1.6'
 
 allprojects {
   repositories {
@@ -51,7 +51,7 @@ bintray {
     licenses = ['MIT']
     vcsUrl = 'https://github.com/skedgo/StringResourcesConverter.git'
     version {
-      name = '0.1.5'
+      name = '0.1.6'
     }
   }
 }
