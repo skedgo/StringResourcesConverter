@@ -242,4 +242,36 @@ class AndroidOutputStrategyTest {
                 "\t<string name=\"two\">dos</string>\n" +
                 "</resources>"
     }
+
+    @Test
+    fun `should skip duplicates`() {
+        // Arrange.
+        val transUnitOne = TransUnit(
+                "one",
+                "one",
+                "uno",
+                "")
+        val transUnitTwo = TransUnit(
+                "one",
+                "one",
+                "uno",
+                "")
+        val translations = Translations(mutableListOf(transUnitOne, transUnitTwo))
+
+        val androidOutputStrategy = AndroidOutputStrategy()
+        androidOutputStrategy.addTimeGeneration = false
+
+        // Act.
+        val stringResource = androidOutputStrategy.generateOutput(translations)
+                .test()
+                .assertNoErrors()
+                .assertCompleted()
+                .onNextEvents[0]
+
+        // Assert.
+        stringResource `should be equal to` "<?xml version='1.0' encoding='UTF-8'?>\n" +
+                "<resources>\n" +
+                "\t<string name=\"one\">uno</string>\n" +
+                "</resources>"
+    }
 }
