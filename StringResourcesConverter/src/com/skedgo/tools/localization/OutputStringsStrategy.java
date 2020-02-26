@@ -1,6 +1,6 @@
-package com.skedgo.tools;
+package com.skedgo.tools.localization;
 
-import com.skedgo.tools.model.StringsStructure;
+import com.skedgo.tools.localization.model.StringsStructure;
 
 /**
  * OutputStrategy defines the output string resource processing algorithm

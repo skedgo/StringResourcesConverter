@@ -1,4 +1,4 @@
-package com.skedgo.tools.platform.android;
+package com.skedgo.tools.localization.platform.android;
 
 import java.io.InputStream;
 
@@ -11,10 +11,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.skedgo.tools.InputCreatorListener;
-import com.skedgo.tools.InputStringsStrategy;
-import com.skedgo.tools.model.StringDefinition;
-import com.skedgo.tools.model.StringsStructure;
+import com.skedgo.tools.localization.InputCreatorListener;
+import com.skedgo.tools.localization.InputStringsStrategy;
+import com.skedgo.tools.localization.model.StringDefinition;
+import com.skedgo.tools.localization.model.StringsStructure;
 
 public class AndroidInputStrategy implements InputStringsStrategy {
 

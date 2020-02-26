@@ -1,4 +1,4 @@
-package com.skedgo.tools;
+package com.skedgo.tools.localization;
 
 import java.io.InputStream;
 

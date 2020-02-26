@@ -1,9 +1,9 @@
-package com.skedgo.tools.platform.xliff;
+package com.skedgo.tools.localization.platform.xliff;
 
-import com.skedgo.tools.InputCreatorListener;
-import com.skedgo.tools.InputStringsStrategy;
-import com.skedgo.tools.model.StringDefinition;
-import com.skedgo.tools.model.StringsStructure;
+import com.skedgo.tools.localization.InputCreatorListener;
+import com.skedgo.tools.localization.InputStringsStrategy;
+import com.skedgo.tools.localization.model.StringDefinition;
+import com.skedgo.tools.localization.model.StringsStructure;
 import com.sun.istack.internal.NotNull;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;

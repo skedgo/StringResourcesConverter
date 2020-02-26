@@ -1,9 +1,9 @@
-package com.skedgo.tools.platform.ios;
+package com.skedgo.tools.localization.platform.ios;
 
-import com.skedgo.tools.InputCreatorListener;
-import com.skedgo.tools.InputStringsStrategy;
-import com.skedgo.tools.model.StringDefinition;
-import com.skedgo.tools.model.StringsStructure;
+import com.skedgo.tools.localization.InputCreatorListener;
+import com.skedgo.tools.localization.InputStringsStrategy;
+import com.skedgo.tools.localization.model.StringDefinition;
+import com.skedgo.tools.localization.model.StringsStructure;
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;

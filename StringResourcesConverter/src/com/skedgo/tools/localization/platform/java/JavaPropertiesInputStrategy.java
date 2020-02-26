@@ -1,9 +1,9 @@
-package com.skedgo.tools.platform.java;
+package com.skedgo.tools.localization.platform.java;
 
-import com.skedgo.tools.InputCreatorListener;
-import com.skedgo.tools.InputStringsStrategy;
-import com.skedgo.tools.model.StringDefinition;
-import com.skedgo.tools.model.StringsStructure;
+import com.skedgo.tools.localization.InputCreatorListener;
+import com.skedgo.tools.localization.InputStringsStrategy;
+import com.skedgo.tools.localization.model.StringDefinition;
+import com.skedgo.tools.localization.model.StringsStructure;
 import com.sun.istack.internal.NotNull;
 import org.apache.commons.io.IOUtils;
 
@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class JavaPropertiesInputStrategy implements InputStringsStrategy {
 
     private static final String patternWords = "[^\r\n]*";
-    public static final String patternDefinition = "(" + patternWords + ") = (" + patternWords + ")";
+    public static final String patternDefinition = "(" + patternWords + ") =[ ]?(" + patternWords + ")";
     public static final String patternComments = "/#[^\r\n]+/";
     public static final String patternCommplete = "[" + patternDefinition + "|" + patternComments + "]+";
 

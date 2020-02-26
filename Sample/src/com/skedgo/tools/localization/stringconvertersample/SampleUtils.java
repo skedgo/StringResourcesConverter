@@ -1,14 +1,14 @@
-package com.skedgo.tools.stringconvertersample;
+package com.skedgo.tools.localization.stringconvertersample;
 
 import java.io.InputStream;
 
-import com.skedgo.tools.InputCreatorListener;
-import com.skedgo.tools.model.StringsStructure;
-import com.skedgo.tools.platform.android.AndroidOutputStrategy;
-import com.skedgo.tools.platform.ios.IOSInputStrategy;
-import com.skedgo.tools.platform.java.JavaPropertiesOutputStrategy;
-import com.skedgo.tools.platform.xliff.XLIFFInputStrategy;
-import com.skedgo.tools.platform.xliff.XLIFFOutputStrategy;
+import com.skedgo.tools.localization.InputCreatorListener;
+import com.skedgo.tools.localization.platform.android.AndroidOutputStrategy;
+import com.skedgo.tools.localization.platform.ios.IOSInputStrategy;
+import com.skedgo.tools.localization.platform.java.JavaPropertiesOutputStrategy;
+import com.skedgo.tools.localization.platform.xliff.XLIFFInputStrategy;
+import com.skedgo.tools.localization.platform.xliff.XLIFFOutputStrategy;
+import com.skedgo.tools.localization.model.StringsStructure;
 
 public class SampleUtils {
 

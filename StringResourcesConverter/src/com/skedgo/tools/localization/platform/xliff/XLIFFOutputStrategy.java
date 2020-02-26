@@ -1,12 +1,12 @@
-package com.skedgo.tools.platform.xliff;
+package com.skedgo.tools.localization.platform.xliff;
+
+import com.skedgo.tools.localization.OutputStringsStrategy;
+import com.skedgo.tools.localization.model.StringDefinition;
+import com.skedgo.tools.localization.model.StringsStructure;
 
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
-
-import com.skedgo.tools.OutputStringsStrategy;
-import com.skedgo.tools.model.StringDefinition;
-import com.skedgo.tools.model.StringsStructure;
 
 public class XLIFFOutputStrategy implements OutputStringsStrategy {
 

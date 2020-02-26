@@ -1,8 +1,8 @@
-package com.skedgo.tools.platform.java;
+package com.skedgo.tools.localization.platform.java;
 
-import com.skedgo.tools.OutputStringsStrategy;
-import com.skedgo.tools.model.StringDefinition;
-import com.skedgo.tools.model.StringsStructure;
+import com.skedgo.tools.localization.OutputStringsStrategy;
+import com.skedgo.tools.localization.model.StringDefinition;
+import com.skedgo.tools.localization.model.StringsStructure;
 
 import java.util.*;
 
@@ -48,7 +48,7 @@ public class JavaPropertiesOutputStrategy implements OutputStringsStrategy {
 
 		}
 
-		buf.append("# This is an auto generated file (" + new Date(System.currentTimeMillis()) + ")");
+//		buf.append("# This is an auto generated file (" + new Date(System.currentTimeMillis()) + ")");
 
 		return buf.toString();
 	}

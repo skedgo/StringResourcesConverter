@@ -1,4 +1,4 @@
-package com.skedgo.tools.stringconvertersample;
+package com.skedgo.tools.localization.stringconvertersample;
 
 public class Main {
 

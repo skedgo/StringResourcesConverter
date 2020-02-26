@@ -1,4 +1,4 @@
-package com.skedgo.tools.model;
+package com.skedgo.tools.localization.model;
 
 import java.util.HashMap;
 import java.util.Map;
